@@ -1,0 +1,207 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * ── FIX TAILWIND V4 SIZING UTILITIES ──────────────────────────────────────
+ *
+ * Di Tailwind v4, max-w-sm/md/lg/xl/2xl menggunakan --spacing-* variables
+ * dari @theme. Karena kita mendefinisikan --spacing-sm: 8px, --spacing-md: 16px,
+ * dll, maka max-w-sm = 8px, max-w-md = 16px — SALAH.
+ *
+ * Solusi: Override kembali dengan nilai yang benar menggunakan @layer utilities.
+ * Atau lebih aman: selalu gunakan arbitrary values [Xrem] atau inline style
+ * untuk sizing yang tidak boleh terpengaruh spacing scale.
+ */
+@layer utilities {
+  .max-w-sm  { max-width: 24rem;   } /* 384px */
+  .max-w-md  { max-width: 28rem;   } /* 448px */
+  .max-w-lg  { max-width: 32rem;   } /* 512px */
+  .max-w-xl  { max-width: 36rem;   } /* 576px */
+  .max-w-2xl { max-width: 42rem;   } /* 672px */
+  .max-w-3xl { max-width: 48rem;   } /* 768px */
+  .max-w-4xl { max-width: 56rem;   } /* 896px */
+  .max-w-5xl { max-width: 64rem;   } /* 1024px */
+  .max-w-6xl { max-width: 72rem;   } /* 1152px */
+  .max-w-7xl { max-width: 80rem;   } /* 1280px */
+}
+
+
+@theme {
+  /* Brand & semantic colors from JalanKita */
+  --color-primary: #1A4F8A;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1a4f8a;
+  --color-on-primary-container: #ffffff;
+  --color-primary-fixed: #d4e3ff;
+  --color-primary-fixed-dim: #a5c8ff;
+
+  --color-secondary: #415f8f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d4e3ff;
+  --color-on-secondary-container: #001b3e;
+
+  --color-tertiary: #303840;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #474f57;
+  --color-on-tertiary-container: #b8c1ca;
+  --color-tertiary-fixed: #dbe3ed;
+  --color-on-tertiary-fixed: #141c23;
+
+  --color-surface: #faf8ff;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #424750;
+  --color-surface-variant: #dae2fd;
+  --color-surface-bright: #faf8ff;
+  --color-surface-dim: #d2d9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #ecedf6;
+  --color-surface-container-high: #e6e8f2;
+  --color-surface-container-highest: #dae2fd;
+
+  --color-bg-surface: #F8FAFC;
+  --color-background: #faf8ff;
+  --color-on-background: #131b2e;
+
+  --color-outline: #737781;
+  --color-outline-variant: #c2c6d1;
+  --color-border-subtle: #E2E8F0;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #410002;
+
+  --color-inverse-surface: #283044;
+  --color-inverse-primary: #a5c8ff;
+
+  /* Damage severity */
+  --color-rusak-berat: #EF4444;
+  --color-rusak-sedang: #F97316;
+  --color-rusak-ringan: #F59E0B;
+  --color-selesai: #10B981;
+
+  /* Spacing */
+  --spacing-margin-mobile: 16px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-tap-target-min: 44px;
+
+  /* Typography */
+  --text-headline-lg: 28px;
+  --text-headline-md: 24px;
+  --text-headline-sm: 18px;
+  --text-headline-sm-mobile: 17px;
+  --text-headline-lg-mobile: 22px;
+  --text-headline-md-mobile: 20px;
+  --text-body-lg: 16px;
+  --text-body-md: 14px;
+  --text-label-md: 12px;
+  --text-label-sm: 11px;
+  --text-id-code: 11px;
+
+  --font-headline-lg: 'Plus Jakarta Sans', sans-serif;
+  --font-headline-md: 'Plus Jakarta Sans', sans-serif;
+  --font-headline-sm: 'Plus Jakarta Sans', sans-serif;
+  --font-headline-sm-mobile: 'Plus Jakarta Sans', sans-serif;
+  --font-headline-lg-mobile: 'Plus Jakarta Sans', sans-serif;
+  --font-headline-md-mobile: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body-lg: 'Inter', sans-serif;
+  --font-body-md: 'Inter', sans-serif;
+  --font-label-md: 'Inter', sans-serif;
+  --font-label-sm: 'Inter', sans-serif;
+  --font-id-code: 'JetBrains Mono', monospace;
+
+  --radius: 0.625rem;
+}
+
+:root {
+  --background: var(--color-bg-surface);
+  --foreground: var(--color-on-surface);
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg-surface);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar, .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+
+/* App mobile shell — center the 390px-style canvas on desktop */
+.app-shell {
+  max-width: 430px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  background-color: var(--color-bg-surface);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: var(--color-bg-surface);
+  }
+}
+
+/*
+ * ── ATURAN LAYOUT PENTING ──────────────────────────────────────────────────
+ *
+ * MASALAH: mx-auto (margin: auto) pada flex item di dalam flex-direction:column
+ * menyebabkan elemen collapse ke minimum content width, bukan center.
+ * Ini karena di flexbox, margin:auto pada cross-axis (horizontal) tidak
+ * bekerja seperti di block layout.
+ *
+ * SOLUSI: Jangan pakai `mx-auto` langsung pada flex item.
+ * Gunakan inline style `style={{ maxWidth: "Xrem", marginLeft: "auto", marginRight: "auto" }}`
+ * atau pastikan parent bukan flex container sebelum menggunakan mx-auto.
+ *
+ * CONTOH SALAH:
+ *   <main className="flex-1 flex flex-col">          ← flex container
+ *     <div className="max-w-2xl mx-auto">            ← mx-auto pada flex item = COLLAPSE
+ *
+ * CONTOH BENAR:
+ *   <main className="flex-1 w-full">                 ← bukan flex container
+ *     <div style={{ maxWidth: "42rem", marginLeft: "auto", marginRight: "auto" }}>
+ *
+ * ── ATURAN OVERLAY/MODAL ──────────────────────────────────────────────────
+ *
+ * Semua elemen dengan `position: fixed` (modal, toast, drawer, tooltip)
+ * WAJIB menggunakan komponen <Portal> agar di-render ke document.body.
+ * Ini mencegah masalah fixed positioning yang terpengaruh oleh sidebar layout.
+ *
+ * Jangan tambahkan `overflow: hidden`, `transform`, `filter`, atau `will-change`
+ * pada AppLayout atau Sidebar karena akan membuat fixed positioning relatif
+ * terhadap elemen tersebut, bukan viewport.
+ */
